@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Game Result</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="titlebar">
+    <span class="title">Tic Tac Toe</span>
+    <div class="window-controls">
+      <button id="minimize" class="pixel-button minimize"></button>
+      <button id="close" class="pixel-button close"></button>
+    </div>
+  </div>
+
+  <div class="main-container">
+    <img id="home-cat" src="image/home-cat.png" alt="Game Logo" width="150">
+   <h1 class="game-over-text">🎮 GAME OVER 🎮</h1>
+
+<div id="resultBox">
+  <p id="resultText"></p>
+</div>
+
+    <!-- Functional Replay Button -->
+    <button class="replay-btn" onclick="restartGame()">
+      <img src="image/replay.png" alt="Replay">
+    </button>
+  </div>
+
+  <script>
+    const winner = localStorage.getItem('winner');
+    const resultText = document.getElementById('resultText');
+
+    if (winner === 'draw') {
+      resultText.textContent = "It's a draw!";
+    } else if (winner === 'cross') {
+      resultText.textContent = "Player X (Cross) wins!";
+    } else if (winner === 'circle') {
+      resultText.textContent = "Player O (Circle) wins!";
+    } else {
+      resultText.textContent = "Game ended.";
+    }
+
+    function restartGame() {
+      localStorage.removeItem('winner');
+      window.location.href = 'index.html';
+    }
+
+    document.getElementById("minimize").addEventListener("click", () => {
+      window.electronAPI.minimize();
+    });
+
+    document.getElementById("close").addEventListener("click", () => {
+      window.electronAPI.close();
+    });
+  </script>
+</body>
+</html>

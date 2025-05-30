@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tic Tac Toe</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="titlebar">
+    <span class="title">Tic Tac Toe</span>
+    <div class="window-controls">
+      <button id="minimize" class="pixel-button minimize"></button>
+      <button id="close" class="pixel-button close"></button>
+    </div>
+  </div>
+
+  <div class="main-container">
+    <img id="home-cat" src="image/home-cat.png" alt="Game Logo" width="150">
+    <div class="start-button" onclick="startGame()">
+      <img src="image/start-button.png" alt="Start">
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("minimize").addEventListener("click", () => {
+      window.electronAPI.minimize();
+    });
+
+    document.getElementById("close").addEventListener("click", () => {
+      window.electronAPI.close();
+    });
+
+    function startGame() {
+      window.location.href = 'game.html';
+    }
+  </script>
+</body>
+</html>
+

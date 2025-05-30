@@ -1,0 +1,276 @@
+/* Page background */
+body {
+  margin: 0;
+  background-color: #3e8e3e; /* Green */
+  font-family: 'Courier New', monospace;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+
+
+.titlebar {
+  background-color: #fff700;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 48px;
+  padding: 0 12px;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  -webkit-app-region: drag;
+  box-sizing: border-box;
+}
+
+.titlebar {
+  background-color: #fff700;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 48px;
+  padding: 0 12px;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  -webkit-app-region: drag;
+  box-sizing: border-box;
+}
+
+.titlebar .title {
+  font-size: 16px;
+  text-rendering: pixelated;
+  font-weight: bold;
+  color: black;
+}
+
+.window-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  -webkit-app-region: no-drag;
+}
+
+/* Core button style */
+.pixel-button {
+  width: 32px;
+  height: 32px;
+  background-color: red !important; /* <- FORCE red to show */
+  border: 2px solid black;
+  border-radius: 8px;
+  position: relative;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  cursor: pointer;
+  image-rendering: pixelated;
+  box-shadow: 3px 3px 0px black;
+}
+
+/* Minimize symbol */
+.pixel-button.minimize::before {
+  content: "";
+  position: absolute;
+  width: 12px;
+  height: 2px;
+  background-color: yellow;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Close "X" symbol */
+.pixel-button.close::before,
+.pixel-button.close::after {
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 2px;
+  background-color: yellow;
+  top: 50%;
+  left: 50%;
+  transform-origin: center;
+}
+
+.pixel-button.close::before {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.pixel-button.close::after {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.window-controls {
+  display: flex;
+  gap: 6px;
+  -webkit-app-region: no-drag;
+}
+
+.window-controls button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 16px;
+  width: 32px;
+  height: 24px;
+  cursor: pointer;
+}
+
+.window-controls button:hover {
+  background-color: red;
+}
+
+/* Main centered container */
+.main-container {
+  background-color: #F2F3D9; /* Cream */
+  margin: auto;
+  padding: 30px 40px;
+  border-radius: 20px;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+/* home page */
+/* Cat image */
+#home-cat {
+  max-width: 240px;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  margin-bottom: 30px;
+}
+
+/* Start button image */
+.start-button img {
+  width: 140px;
+  cursor: pointer;
+  display: block;
+}
+
+
+
+/* Game board */
+
+.main-container {
+  background-color: #F2F3D9; /* Cream */
+  margin: auto;
+  padding: 30px 40px;
+  border-radius: 20px;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.3);
+  
+}
+
+#home-cat {
+  max-width: 240px;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  margin-bottom: 30px;
+}
+.reset-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  box-shadow: none;
+  cursor: pointer;
+  display: block;
+}
+
+.reset-btn img {
+  width: 140px;
+  height: auto;
+  display: block;
+}
+
+
+.board {
+  display: grid;
+  background-color: #F2F3D9;
+  grid-template-columns: repeat(3, 100px);
+  grid-gap: 8px;
+  height: 70%;
+  justify-content: center;
+  margin: 40px auto;
+}
+
+.cell {
+  width: 100px;
+  height: 100px;
+  background-image: url('image/empty.png');
+  background-size: cover;
+  cursor: pointer;
+}
+
+.cell.cross {
+  background-image: url('image/cross.png');
+}
+
+.cell.circle {
+  background-image: url('image/circle.png');
+}
+
+
+
+
+/* result page */
+
+.result-display {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.game-over-text {
+  font-family: 'Courier New', monospace;
+  font-size: 40px;
+  color: #ff0044;
+  text-shadow: 2px 2px 0 #000, 4px 4px 0 #ffd700;
+  margin-bottom: 20px;
+  animation: bounce 1s ease-in-out infinite alternate;
+}
+
+#resultBox {
+  padding: 10px 20px;
+  background: linear-gradient(to right, #3ba0ff, #2c07ff);
+  border: 4px solid #260194;
+  border-radius: 15px;
+  box-shadow: 4px 4px 0px #000;
+  font-family: 'Courier New', monospace;
+  font-size: 16px;
+  font-weight: bold;
+  color: #ffffff;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+@keyframes bounce {
+  0% { transform: translateY(0px); }
+  100% { transform: translateY(-8px); }
+}
+
+
+
+.replay-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  box-shadow: none;
+  cursor: pointer;
+  display: block;
+}
+
+.replay-btn img {
+  width: 280px;
+  height: 100px;
+  display: block;
+}
+
+
+.centered{
+  align-items: center;
+  justify-content: center;
+  
+}
+
+

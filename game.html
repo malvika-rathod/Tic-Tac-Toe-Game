@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tic Tac Toe - Game</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Custom Titlebar -->
+  <div class="titlebar">
+    <span class="title">Tic Tac Toe</span>
+    <div class="window-controls">
+      <button id="minimize" class="pixel-button minimize"></button>
+      <button id="close" class="pixel-button close"></button>
+    </div>
+  </div>
+
+  <!-- Game Board -->
+  <div class="main-container">
+    <div id="board" class="board"></div>
+
+    <!-- Functional Reset Button -->
+    <button class="reset-btn" id="reset-button">
+      <img src="image/reset.png" alt="Reset" />
+    </button>
+  </div>
+
+  <script>
+    // Electron window controls
+    document.getElementById("minimize").addEventListener("click", () => {
+      window.electronAPI.minimize();
+    });
+
+    document.getElementById("close").addEventListener("click", () => {
+      window.electronAPI.close();
+    });
+
+    // Game Logic
+    const board = document.getElementById("board");
+    let currentPlayer = "cross";
+    let cells = Array(9).fill(null);
+
+    const winPatterns = [
+      [0, 1, 2], [3, 4, 5], [6, 7, 8],
+      [0, 3, 6], [1, 4, 7], [2, 5, 8],
+      [0, 4, 8], [2, 4, 6]
+    ];
+
+    document.getElementById("reset-button").addEventListener("click", () => {
+      cells = Array(9).fill(null);
+      currentPlayer = "cross";
+      renderBoard();
+    });
+
+    function renderBoard() {
+      board.innerHTML = '';
+      cells.forEach((value, index) => {
+        const cell = document.createElement('div');
+        cell.className = 'cell';
+        if (value) cell.classList.add(value);
+        cell.addEventListener('click', () => handleClick(index));
+        board.appendChild(cell);
+      });
+    }
+
+    function handleClick(index) {
+      if (cells[index] || checkWinner()) return;
+      cells[index] = currentPlayer;
+      currentPlayer = currentPlayer === "cross" ? "circle" : "cross";
+      renderBoard();
+
+      const winner = checkWinner();
+      if (winner || winner === "draw") {
+        localStorage.setItem('winner', winner);
+        window.location.href = 'result.html';
+      }
+    }
+
+    function checkWinner() {
+      for (let pattern of winPatterns) {
+        const [a, b, c] = pattern;
+        if (cells[a] && cells[a] === cells[b] && cells[b] === cells[c]) {
+          return cells[a];
+        }
+      }
+      return cells.every(Boolean) ? "draw" : null;
+    }
+
+    renderBoard();
+  </script>
+</body>
+</html>
