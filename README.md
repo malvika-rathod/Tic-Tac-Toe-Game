@@ -61,6 +61,9 @@ CSS3
 
 JavaScript
 
+🎨 Design
+All designs and pixel art assets used in this project were created by the author.
+
 📷 Screenshots
 Main Menu
 ![image](https://github.com/user-attachments/assets/e2759142-277d-4d13-9df2-e6a439daa8c3)
